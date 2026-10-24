@@ -1,0 +1,202 @@
+{
+  "name": "HireWise AI - MITRE ATLAS Mapping",
+  "versions": {
+    "layer": "4.5",
+    "navigator": "5.3.2"
+  },
+  "domain": "atlas-atlas",
+  "description": "ATLAS mapping of the HireWise AI incident report (Incidents 1-6). Green = directly supported by evidence; Orange = implied or suspected. Training-data/model poisoning intentionally NOT mapped: Incident 5 states no evidence of modification to the training dataset or model parameters.",
+  "filters": {
+    "platforms": []
+  },
+  "sorting": 0,
+  "layout": {
+    "layout": "side",
+    "aggregateFunction": "average",
+    "showID": false,
+    "showName": true,
+    "showAggregateScores": false,
+    "countUnscored": false,
+    "expandedSubtechniques": "annotated"
+  },
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "AML.T0051",
+      "tactic": "execution",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0043",
+      "tactic": "ai-attack-adaptation",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0024",
+      "tactic": "exfiltration",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0005",
+      "tactic": "ai-attack-adaptation",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0085",
+      "tactic": "collection",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0048",
+      "tactic": "impact",
+      "showSubtechniques": true
+    },
+    {
+      "techniqueID": "AML.T0051.001",
+      "color": "#8ec843",
+      "comment": "Incident 1 & 5 | Evidence: CVs contained unusual hidden instructions; when processed, the assistant ignored its normal instructions and produced unrelated text in summaries (Inc. 1); other CVs carried instructions meant to influence ranking (Inc. 5). | Justification: the instructions arrive through a third-party data channel (the CV) that the LLM ingests, not from the legitimate HR user = Indirect LLM Prompt Injection. Observed effect on the output is confirmed for Inc. 1.",
+      "enabled": true
+    },
+    {
+      "techniqueID": "AML.T0065",
+      "color": "#8ec843",
+      "comment": "Incident 1 | Evidence: CV text contained deliberately written instructions that made the assistant drop its normal behaviour. | Justification: the attacker authored and tuned prompt content targeted at the LLM summariser so malicious instructions would be executed. The author's identity and iteration process are not known, but the crafted artefact itself is directly observed.",
+      "enabled": true,
+      "tactic": "ai-attack-adaptation",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0043.003",
+      "color": "#8ec843",
+      "comment": "Incident 5 | Evidence: several CVs were deliberately modified before upload with misleading qualifications and ranking-influencing instructions. | Justification: manual modification of input data to push the model toward a favourable output. This is input-level manipulation only; no training data or weights were altered (see report).",
+      "enabled": true
+    },
+    {
+      "techniqueID": "AML.T0012",
+      "color": "#8ec843",
+      "comment": "Incident 3 | Evidence: security logs show an employee account submitted hundreds of prompts to the AI system. | Justification: legitimate employee credentials were used to reach the system (insider abuse of a valid account). Whether the credentials were compromised or used by their owner is not established; Inc. 4 ties the repository to the employee.",
+      "enabled": true,
+      "tactic": "initial-access",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0040",
+      "color": "#8ec843",
+      "comment": "Incident 3 | Evidence: repeated API queries asking for candidate rankings, scoring explanations and example responses. | Justification: the account used the production inference API as its access path to the model; this is the enabler for the replication that follows.",
+      "enabled": true,
+      "tactic": "ai-model-access",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0127",
+      "color": "#8ec843",
+      "comment": "Incident 3 | Evidence: the account saved the model outputs in local files. | Justification: model responses were gathered and consolidated in one place before being used or moved out (later found in the personal repository, Inc. 4).",
+      "enabled": true,
+      "tactic": "collection",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0024.002",
+      "color": "#8ec843",
+      "comment": "Incident 3 & 4 | Evidence: hundreds of slightly varied prompts (Inc. 3); repository holding the collected outputs plus a fine-tuning script, with the stated goal to reproduce HireWise's candidate-ranking behaviour (Inc. 4). | Justification: repeatedly querying an inference API to collect outputs and train a mimic model is the definition of Extract AI Model. Extraction intent and collection are confirmed; fidelity of the copy is not (Inc. 6).",
+      "enabled": true
+    },
+    {
+      "techniqueID": "AML.T0005.001",
+      "color": "#8ec843",
+      "comment": "Incident 4 | Evidence: script used the collected HireWise outputs to fine-tune a smaller language model; investigators confirmed it was trained on HireWise outputs (Inc. 6). | Justification: the model outputs were used as training labels for a separate proxy that mimics the target.",
+      "enabled": true
+    },
+    {
+      "techniqueID": "AML.T0057",
+      "color": "#8ec843",
+      "comment": "Incident 2 | Evidence: when summarising a candidate, the assistant included internal notes that were not meant to appear; the notes sat in the internal document database. | Justification: the LLM disclosed confidential data in its output. The report describes a testing context, so malicious intent is not shown, but the technique describes the observed behaviour. Inc. 6: whether the replica model leaks further confidential data is unconfirmed.",
+      "enabled": true,
+      "tactic": "exfiltration",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0093",
+      "color": "#ffa500",
+      "comment": "Incident 1 & 5 | Evidence: manipulated CVs reached HR through the normal application flow. | Justification: suggests the attacker placed prompts through an externally reachable intake channel for the AI to ingest later. The report does not say who submitted the CVs or that the intake portal is public, so this is implied, not confirmed.",
+      "enabled": true,
+      "tactic": "initial-access",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0068",
+      "color": "#ffa500",
+      "comment": "Incident 1 | Evidence: instructions were described as 'hidden' in the CV text. | Justification: hidden instructions suggest obfuscation (e.g. white or tiny text) to evade human reviewers and guardrails. The concealment method is not stated, so this is suspected.",
+      "enabled": true,
+      "tactic": "defense-evasion",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0054",
+      "color": "#ffa500",
+      "comment": "Incident 1 | Evidence: the assistant ignored its normal instructions and produced unrelated text. | Justification: overriding intended behaviour is consistent with a jailbreak, but the report does not show that safety/guardrail policies were bypassed rather than ordinary instruction hijacking.",
+      "enabled": true,
+      "tactic": "defense-evasion",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0015",
+      "color": "#ffa500",
+      "comment": "Incident 5 | Evidence: CVs had misleading qualifications and instructions intended to influence the AI's ranking. | Justification: the intent was to make the ranking model misjudge candidates. No evidence is given that any ranking was actually changed, so success is unconfirmed.",
+      "enabled": true,
+      "tactic": "defense-evasion",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0085.000",
+      "color": "#ffa500",
+      "comment": "Incident 2 | Evidence: internal notes stored in the internal document database appeared in the assistant's summary. | Justification: indicates the assistant retrieves from a connected document store (RAG-style). The report never names the architecture as RAG, so this is inferred.",
+      "enabled": true
+    },
+    {
+      "techniqueID": "AML.T0063",
+      "color": "#ffa500",
+      "comment": "Incident 3 | Evidence: prompts requested scoring explanations and example responses, not just rankings. | Justification: probing for the scores and reasoning behind outputs suggests discovery of output detail useful for replication. Intent behind the explanation requests is not stated.",
+      "enabled": true,
+      "tactic": "discovery",
+      "showSubtechniques": false
+    },
+    {
+      "techniqueID": "AML.T0048.004",
+      "color": "#ffa500",
+      "comment": "Incident 6 | Evidence: the replica model was shared with other users; confirmed to be trained on HireWise outputs. | Justification: a shared copy of HireWise's ranking behaviour implies possible IP theft. Investigators could not establish that it reproduces the original's capabilities, so impact is suspected only.",
+      "enabled": true
+    }
+  ],
+  "gradient": {
+    "colors": [
+      "#ff6666ff",
+      "#ffe766ff",
+      "#8ec843ff"
+    ],
+    "minValue": 0,
+    "maxValue": 100
+  },
+  "legendItems": [
+    {
+      "label": "Directly supported by evidence",
+      "color": "#8ec843"
+    },
+    {
+      "label": "Implied or suspected, not conclusively established",
+      "color": "#ffa500"
+    }
+  ],
+  "metadata": [
+    {
+      "name": "atlas_data_version",
+      "value": "2026.09"
+    }
+  ],
+  "links": [],
+  "showTacticRowBackground": false,
+  "tacticRowBackground": "#dddddd",
+  "selectTechniquesAcrossTactics": true,
+  "selectSubtechniquesWithParent": false,
+  "selectVisibleTechniques": false
+}
