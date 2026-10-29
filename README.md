@@ -1,12 +1,12 @@
 # HireWise AI Security Incident Mapping — MITRE ATLAS Matrix
 
-[![Coursework](https://img.shields.io/badge/Project-Academic%20Case%20Study-informational.svg)](#)
+[![Project](https://img.shields.io/badge/Project-AI%20Incident%20Analysis-informational.svg)](#)
 [![MITRE ATLAS](https://img.shields.io/badge/MITRE%20ATLAS-v2026.09-blue.svg)](https://atlas.mitre.org/)
 [![Navigator Layer](https://img.shields.io/badge/Navigator%20Layer-v4.5-orange.svg)](https://atlas.mitre.org/navigator/)
 [![Topic](https://img.shields.io/badge/Domain-AI%20%26%20LLM%20Security-red.svg)](#)
 
 > [!NOTE]
-> **Academic & Educational Disclaimer**: This repository contains an academic coursework case study completed for educational purposes. **HireWise AI is an entirely fictional entity**, and the 6 incidents analyzed here are simulated, hypothetical scenarios provided as part of an AI security assignment to practice threat modeling and technique mapping using the MITRE ATLAS framework. No actual organization, real individuals, or live enterprise systems are depicted.
+> **HireWise AI is an entirely fictional entity**, and the 6 incidents analyzed here are simulated, hypothetical scenarios designed to evaluate AI threat modeling, attack surfaces, and technique mapping using the MITRE ATLAS framework. No actual organization, real individuals, or live enterprise systems are depicted.
 
 ---
 
@@ -22,7 +22,7 @@ Observed and suspected Tactics, Techniques, and Procedures (TTPs) across the 6 h
 
 The visual matrix below highlights all 16 mapped TTP instances across the AI threat lifecycle.
 
-![MITRE ATLAS Matrix for HireWise AI](matrix_beta.png)
+![MITRE ATLAS Matrix for HireWise AI](matrix.png)
 
 ### Evidence Legend
 - 🟩 **Green (`#8ec843`) — Directly Supported by Evidence**: Conclusively verified by the case logs, codebase artifacts, or observed scenario outputs.
@@ -62,7 +62,7 @@ The visual matrix below highlights all 16 mapped TTP instances across the AI thr
 
 1. Visit the [MITRE ATLAS Navigator Web Application](https://atlas.mitre.org/navigator/).
 2. Click **Open Existing Layer** (folder icon) in the top-left toolbar.
-3. Select **Upload from local file** and choose `HireWise_ATLAS_layer_beta.json`.
+3. Select **Upload from local file** and choose `HireWise_ATLAS_layer.json`.
 4. The interactive matrix will load:
    - Right-click or hover over colored techniques to inspect detailed case evidence and justifications.
    - Filter or expand subtechniques.
