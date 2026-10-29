@@ -12,7 +12,7 @@
 
 ## 📖 Overview
 
-This assignment evaluates simulated security incidents within a hypothetical recruitment AI system (**HireWise AI**) that utilizes a Large Language Model (LLM) to parse CVs, generate candidate summaries, and recommend applicant rankings.
+This project evaluates simulated security incidents within a hypothetical recruitment AI system (**HireWise AI**) that utilizes a Large Language Model (LLM) to parse CVs, generate candidate summaries, and recommend applicant rankings.
 
 Observed and suspected Tactics, Techniques, and Procedures (TTPs) across the 6 hypothetical incident scenarios are mapped directly to the **[MITRE ATLAS™ (Adversarial Threat Landscape for Artificial-Intelligence Systems)](https://atlas.mitre.org/)** framework.
 
@@ -48,10 +48,10 @@ The visual matrix below highlights all 16 mapped TTP instances across the AI thr
 ## 📂 Repository Contents
 
 ```text
-├── HireWise_ATLAS_layer_beta.json     # MITRE ATLAS Navigator JSON layer (Layer v4.5)
-├── matrix_beta.png                    # High-resolution visualization exported from Navigator
-├── HireWise_Incident_ATLAS_Mapping.pdf # Full 3-page consolidated mapping report & justifications
-├── assignment.pdf                     # Original HireWise case study briefing
+├── HireWise_ATLAS_layer.json          # MITRE ATLAS Navigator JSON layer (Layer v4.5)
+├── matrix.png                         # High-resolution visualization exported from Navigator
+├── Mitre_ATLAS_mapping.pdf            # Full 3-page consolidated mapping report & justifications
+├── HireWise_Incident_Scenarios.pdf    # Original HireWise case study briefing
 ├── .gitignore                         # Standard project ignore file
 └── README.md                          # Project documentation and summary
 ```
